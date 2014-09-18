@@ -42,6 +42,8 @@
   ;; (setq cs164-type-regexp nil)
   (setq cs164-keywords-variables nil)
   (set-syntax-table cs164-mode-syntax-table)
+  (set (make-local-variable 'comment-start) "# ")
+  (set (make-local-variable 'comment-end) "")
                                         ; (setq c-basic-offset 4)
                                         ; (c-set-offset 'case-label '+)
   )

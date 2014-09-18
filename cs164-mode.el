@@ -29,7 +29,7 @@
         ))
 
 
-(define-derived-mode cs164-mode fundamental-mode
+(define-derived-mode cs164-mode javascript-mode
   "cs164-mode"
   "Major mode to edit cs164"
   (setq font-lock-defaults '((cs164-font-lock-keywords)))

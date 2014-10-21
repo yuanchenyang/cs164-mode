@@ -28,6 +28,11 @@
         (,cs164-keywords-variables 1 font-lock-variable-name-face)
         ))
 
+(defvar cs164-mode-syntax-table
+  (let ((st (make-syntax-table)))
+    (modify-syntax-entry ?# "<" st)
+    (modify-syntax-entry ?\n ">" st)
+    st))
 
 (define-derived-mode cs164-mode javascript-mode
   "cs164-mode"
@@ -36,6 +41,9 @@
   (setq cs164-keywords-regexp nil)
   ;; (setq cs164-type-regexp nil)
   (setq cs164-keywords-variables nil)
+  (set-syntax-table cs164-mode-syntax-table)
+  (set (make-local-variable 'comment-start) "# ")
+  (set (make-local-variable 'comment-end) "")
                                         ; (setq c-basic-offset 4)
                                         ; (c-set-offset 'case-label '+)
   )

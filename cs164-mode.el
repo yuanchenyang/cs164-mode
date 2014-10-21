@@ -13,7 +13,7 @@
 (setq cs164-keywords-variables
       "def\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)\\s-*\\|for\\s-*(\\([a-zA-Z_][a-zA-Z_0-9]*\\)")
 
-(setq cs164-comment "\\(#.*\\)$")
+;;(setq cs164-comment "\\(#.*\\)$")
 
 
 (setq cs164-keywords nil)
@@ -27,13 +27,22 @@
         (,cs164-keywords-variables 1 font-lock-variable-name-face)
         ))
 
-(define-derived-mode cs164-mode fundamental-mode
+(defvar cs164-mode-syntax-table
+  (let ((st (make-syntax-table)))
+    (modify-syntax-entry ?# "<" st)
+    (modify-syntax-entry ?\n ">" st)
+    st))
+
+(define-derived-mode cs164-mode javascript-mode
   "cs164-mode"
   "Major mode to edit cs164"
   (setq font-lock-defaults '((cs164-font-lock-keywords)))
   (setq cs164-keywords-regexp nil)
   ;; (setq cs164-type-regexp nil)
   (setq cs164-keywords-variables nil)
+  (set-syntax-table cs164-mode-syntax-table)
+  (set (make-local-variable 'comment-start) "# ")
+  (set (make-local-variable 'comment-end) "")
                                         ; (setq c-basic-offset 4)
                                         ; (c-set-offset 'case-label '+)
   )
